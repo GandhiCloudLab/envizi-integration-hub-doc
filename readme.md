@@ -200,8 +200,8 @@ View the `Org Hiearchy` to see the `groups`, `locations` and `accounts` are crea
 
 View the summary page to see the account details.
 
-<img src="images/img-21-summar1.png">
-<img src="images/img-21-summar2.png">
+<img src="images/img-21-summary1.png">
+<img src="images/img-21-summary2.png">
 
 
 ## Summary
