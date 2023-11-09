@@ -14,17 +14,12 @@ This tutorial gives you an overview about how to use Envizi Integration Hub to I
 4. Ingest Turbonomic Data into Envizi
 5. View the Turbonomic Data in Envizi
 
-## Pre-Requisite
-
 ## Pre-Requisites
 
 To run this tutorial you need to have the followings.
 
 1. IBM Envizi ESG Suite access with Administrator privileges.
 2. Docker runtime to run the docker container in your system.
-
-
-You need to have docker runtime to run the docker container in your system.
 
 ## 1. Create Data Service and Data Pipeline in Envizi
 
@@ -51,8 +46,13 @@ You need to create Data Pipeline in Envizi. You can refer the tutorial https://d
 1. Create Data Pipeline in envizi. 
 <img src="images/img-13-datapipeline.png">
 
+The file name patterns used here are       
 
-2. Run the Envizi Integration Hub
+```
+^POC.*\.xlsx
+^Envizi.*\.xlsx
+
+```
 
 ## 2. Start the Envizi Integration Hub App 
 
@@ -99,7 +99,7 @@ This helps to create all the groups, locations and accounts created by this inte
 ```
   "envizi": {
     "parameters": {
-      "prefix": "G1"
+      "prefix": "G2"
     }
   },
 ```
@@ -138,7 +138,7 @@ Integration Hub pulls the Energy Consumption of each data center from Turbonomic
 ```
 ### 2.2 Start the Integration Hub App
 
-1. Keep the envizi-config.json in the current folder
+1. Keep the `envizi-config.json` in the current folder
 
 2. Run the below command to start the app.
 
