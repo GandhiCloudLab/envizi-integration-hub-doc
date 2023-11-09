@@ -1,4 +1,4 @@
-# Integrating Turbonomic with Envizi using Envizi Integration Hub
+# Envizi Integration Hub - Integrating Turbonomic with Envizi 
 
 Envizi Integration Hub facilitates the integration of data from various external systems into the IBM Envizi ESG Suite.
 
