@@ -138,18 +138,21 @@ Integration Hub pulls the Energy Consumption of each data center from Turbonomic
 ```
 ### 2.2 Start the Integration Hub App
 
-1. Keep the `envizi-config.json` in the current folder
+1. Keep the property file `envizi-config.json` in some folder. Lets us assume the file is located in `/Users/gandhi/Desktop/envizi-config.json`
 
 2. Run the below command to start the app.
 
+The abolve file name is mentioned in the `-v` parameter here and suffixed with `:/app/envizi-config.json`
+
 for Mac
 ```
-docker run -d -p 3001:3001  -v "./envizi-config.json" gandigit/e-int-hub-mac:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-mac:latest
+
 ```
 
 for linux
 ```
-docker run -d -p 3001:3001  -v "./envizi-config.json" gandigit/e-int-hub-linux:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-linux:latest
 ```
 
 3. Open the url http://localhost:3001/ in the browser to see the home page.
@@ -157,6 +160,22 @@ docker run -d -p 3001:3001  -v "./envizi-config.json" gandigit/e-int-hub-linux:l
 
 <img src="images/img-15-home.png">
 
+### 2.3 To stop the Integration Hub App
+
+Run the below commands one by one to stop the app.
+
+```
+docker stop my-e-int-hub
+docker rm my-e-int-hub
+```
+
+### 2.4 To view the logs
+
+Run the below commmand to view the logs of the app.
+
+```
+docker logs my-e-int-hub
+```
 
 ## 3. Update the Configuration settings
 
