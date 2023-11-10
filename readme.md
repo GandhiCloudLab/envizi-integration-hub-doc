@@ -8,11 +8,14 @@ It connects to external systems, such as Turbonomic, retrieves emissions data, c
 
 This tutorial gives you an overview about how to use Envizi Integration Hub to Integrate Turbonomic data into IBM Envizi ESG Suite.
 
-1. Create Data Service and Data Pipeline in Envizi
-2. Start the Envizi Integration Hub App
-3. Update the Configuration settings
-4. Ingest Turbonomic Data into Envizi
-5. View the Turbonomic Data in Envizi
+Here is the summary of this tutorial
+
+1. Create Data Service and Data Pipeline in Envizi to create AWS S3 buckets.
+2. Prepare Configuration file with the S3 and Turbonomic access details.
+3. Start the Integration Hub App
+4. Update the Configuration settings in the App if required
+5. Ingest Turbonomic Data into Envizi via the App
+6. View the Turbonomic Data in Envizi
 
 ## Pre-Requisites
 
@@ -54,11 +57,9 @@ The file name patterns used here are
 
 ```
 
-## 2. Start the Envizi Integration Hub App 
+## 2 Prepare Configuration file
 
-### 2.1 Prepare Config file
-
-#### 1. Download the Property file
+#### 1. Download the Config file
 
 Download the [envizi-config.json](./files/envizi-config.json)
 
@@ -136,7 +137,11 @@ Integration Hub pulls the Energy Consumption of each data center from Turbonomic
     }
   }
 ```
-### 2.2 Start the Integration Hub App
+## 3. Start the Integration Hub App
+
+Need to start the Integration Hub App with the prepared configuration file.
+
+### 3.1 Start the App
 
 1. Keep the property file `envizi-config.json` in some folder. Lets us assume the file is located in `/Users/gandhi/Desktop/envizi-config.json`
 
@@ -160,7 +165,7 @@ docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-
 
 <img src="images/img-15-home.png">
 
-### 2.3 To stop the Integration Hub App
+### 3.2 To stop the Integration Hub App (for info only)
 
 Run the below commands one by one to stop the app.
 
@@ -169,7 +174,7 @@ docker stop my-e-int-hub
 docker rm my-e-int-hub
 ```
 
-### 2.4 To view the logs
+### 3.3 To view the logs (for info only)
 
 Run the below commmand to view the logs of the app.
 
@@ -177,15 +182,17 @@ Run the below commmand to view the logs of the app.
 docker logs my-e-int-hub
 ```
 
-## 3. Update the Configuration settings
+## 4. Update the Configuration settings in the Hub
 
-The above updated `envizi-config.json` config file content would be displayed here for further update if any. 
+The above prepared `envizi-config.json` config file content would be displayed here in app. The properties can be further updated here if required. 
 
 <img src="images/img-16-config1.png">
 <img src="images/img-16-config2.png">
 
 
-## 4. Ingest Turbonomic Data into Envizi
+## 5. Ingest Turbonomic Data into Envizi
+
+Lets ingest data from Turbonomoic into Envizi.
 
 1. Click on the `Turbonomic` menu and get into Turbonomic integration screen.
 
@@ -201,21 +208,21 @@ The above updated `envizi-config.json` config file content would be displayed he
 <img src="images/img-18-turbo-data2.png">
 
 
-## 5. View the Turbonomic Data in Envizi
+## 6. View the Turbonomic Data in Envizi
 
-### 5.1 View File Delivery Status
+### 6.1 View File Delivery Status
 
 View the `file delivery status` to see the `locations` and `accounts` related files are integrated into Envizi.
 
 <img src="images/img-19-file-delivery-status.png">
 
-### 5.2 View Org hierarchy
+### 6.2 View Org hierarchy
 
 View the `Org Hiearchy` to see the `groups`, `locations` and `accounts` are created in Envizi.
 
 <img src="images/img-20-orghierarchy.png">
 
-### 5.3 View Summary page
+### 6.3 View Summary page
 
 View the summary page to see the account details.
 
