@@ -165,7 +165,7 @@ docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-
 
 <img src="images/img-15-home.png">
 
-### 3.2 To stop the Integration Hub App (for info only)
+### 3.2 Stop the App (for info only)
 
 Run the below commands one by one to stop the app.
 
@@ -174,7 +174,7 @@ docker stop my-e-int-hub
 docker rm my-e-int-hub
 ```
 
-### 3.3 To view the logs (for info only)
+### 3.3 View the App logs (for info only)
 
 Run the below commmand to view the logs of the app.
 
@@ -182,7 +182,7 @@ Run the below commmand to view the logs of the app.
 docker logs my-e-int-hub
 ```
 
-## 4. Update the Configuration settings in the Hub
+## 4. Update Configuration settings in the App
 
 The above prepared `envizi-config.json` config file content would be displayed here in app. The properties can be further updated here if required. 
 
@@ -190,7 +190,7 @@ The above prepared `envizi-config.json` config file content would be displayed h
 <img src="images/img-16-config2.png">
 
 
-## 5. Ingest Turbonomic Data into Envizi
+## 5. Ingest Turbonomic Data into Envizi via the App
 
 Lets ingest data from Turbonomoic into Envizi.
 
