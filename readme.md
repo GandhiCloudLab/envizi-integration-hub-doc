@@ -131,7 +131,7 @@ Integration Hub pulls the Energy Consumption of each data center from Turbonomic
     "parameters": {
       "group": "Sustainable-IT",
       "sub_group": "Turbonomic",
-      "account_style": "Electricity - kWh",
+      "account_style": "S2 - Electricity - kWh",
       "start_date": "2023-10-30",
       "end_date": "2023-11-04"
     }
@@ -157,7 +157,7 @@ docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-
 
 for linux
 ```
-docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-linux:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" docker.io/gandigit/e-int-hub-linux:latest
 ```
 
 3. Open the url http://localhost:3001/ in the browser to see the home page.

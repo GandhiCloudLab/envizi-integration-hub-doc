@@ -21,7 +21,7 @@
     "parameters": {
       "group": "Sustainable-IT",
       "sub_group": "Turbonomic",
-      "account_style": "Electricity - kWh",
+      "account_style": "S2 - Electricity - kWh",
       "start_date": "2023-10-30",
       "end_date": "2023-11-04"
     }
