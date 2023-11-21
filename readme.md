@@ -143,17 +143,19 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
   }
 ```
 
-1. The specified `group` and `sub_group` are created as `Groups` in Organization Hierarchy.
-2. Each data center from Turbonomic is created as an `Location` under the `sub_group`.
-3. The below  `Accounts` and `Account Styles` should be created for each Data center from Turbonomic.
+1. The `group` and `sub_group` are created as `Groups` in Organization Hierarchy.
+2. Each datacenter from Turbonomic is created as a `Location` under the `sub_group`.
+3. The below  `Accounts` and `Account Styles` should be created for each Datacenter from Turbonomic.
   ```
+  Accounts                        Accounts Style
+  -----------------------         ------------------------
   Energy Consumption      ---     Energy Consumption - kWh
   Active Hosts            ---     Active Hosts [Number]     
   Active VMs              ---     Active Virtual Machines [Number]
   Energy Host Intensity   ---     Energy Host Intensity - kWh/host
   VM Host Density         ---     Virtual Machine to Host Density - VM/Host
   ```
-4. If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the right values. Otherwise just leave it for default.
+4. If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the your values. Otherwise just leave it for default as they are available in UDC. 
 
 ## 3. Start the Integration Hub App
 
@@ -165,11 +167,16 @@ To start the app, you can run the python source directly or via the Docker Conta
 
 1. Download the repo https://github.com/ibm-ecosystem-engineering/envizi-integration-hub .
 
-2. Prepare the Configuration file `envizi-config.json`. Sample file is available in `./config/envizi-config-sample.json`.
+2. Prepare the Configuration file `envizi-config.json`. (Sample file is available in `./config/envizi-config-sample.json`).
 
-3. Lets us assume the file is located in `/tmp/envizi-config.json`
+3. Keep the file is some folder. Lets us assume the file is located in `/tmp/envizi-config.json`
 
-4. Run the below command to create virutal environment (first time only).
+3. Go inside the root folder `envizi-integration-hub` of the downloaded repo.
+```
+cd envizi-integration-hub
+```
+
+4. Run the below command to create virtual environment (first time only).
 ```
 python -m venv myvenv
 source myvenv/bin/activate
@@ -177,7 +184,7 @@ source myvenv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-5. Run the below command to start the app. The config file location is given here and it should be Absolute Path.
+5. Run the below command to start the app. The config file location is given here and it should be an absolute Path.
 
 ```
 export WRITE_INTERIM_FILES=FALSE
@@ -187,6 +194,11 @@ export ENVIZI_CONFIG_FILE="/tmp/envizi-config.json"
 python app/main.py
 
 ```
+
+6. Open the url http://localhost:3001/ in the browser to see the home page.
+
+<img src="images/img-15-home.png">
+
 ### 3.2 Start the App using Docker
 
 Need to start the Integration Hub App with the prepared configuration file.
@@ -213,8 +225,6 @@ docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/
 3. Open the url http://localhost:3001/ in the browser to see the home page.
 
 
-<img src="images/img-15-home.png">
-
 #### 3.2.2 Stop the App (for info only)
 
 Run the below commands one by one to stop the app.
@@ -226,7 +236,7 @@ docker rm my-e-int-hub
 
 #### 3.2.3 View the App logs (for info only)
 
-Run the below commmand to view the logs of the app.
+Run the below command to view the logs of the app.
 
 ```
 docker logs my-e-int-hub
@@ -243,7 +253,7 @@ The above prepared `envizi-config.json` config file content would be displayed h
 
 ## 5. Ingest Turbonomic Data into Envizi via the App
 
-Lets ingest data from Turbonomoic into Envizi.
+Lets ingest data from Turbonomic into Envizi.
 
 1. Click on the `Turbonomic` menu and get into Turbonomic integration screen.
 
@@ -267,11 +277,11 @@ View the `file delivery status` to see the `locations` and `accounts` related fi
 
 <img src="images/img-19-file-delivery-status.png">
 
-### 6.2 View Org hierarchy
+### 6.2 View Org Hierarchy
 
-View the `Org Hiearchy` to see the `groups`, `locations` and `accounts` are created in Envizi.
+View the `Org Hierarchy` to see the `groups`, `locations` and `accounts` are created in Envizi.
 
-Here the `Energy Consumption` related account is available.
+Here `Energy Consumption` related account is available.
 
 <img src="images/img-20-orghierarchy1.png">
 
