@@ -147,7 +147,7 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
 2. Each datacenter from Turbonomic is created as a `Location` under the `sub_group`.
 3. The below  `Accounts` and `Account Styles` should be created for each Datacenter from Turbonomic.
   ```
-  Accounts                        Accounts Style
+  Account                         Account Style
   -----------------------         ------------------------
   Energy Consumption      ---     Energy Consumption - kWh
   Active Hosts            ---     Active Hosts [Number]     
@@ -165,7 +165,7 @@ To start the app, you can run the python source directly or via the Docker Conta
 
 ### 3.1 Start the App using Python source
 
-1. Download the repo https://github.com/ibm-ecosystem-engineering/envizi-integration-hub .
+1. Download the repo https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app .
 
 2. Prepare the Configuration file `envizi-config.json`. (Sample file is available in `./config/envizi-config-sample.json`).
 
@@ -270,6 +270,8 @@ Lets ingest data from Turbonomic into Envizi.
 
 
 ## 6. View the Turbonomic Data in Envizi
+
+Lets view the Turbonomic Data in Envizi now.
 
 ### 6.1 View File Delivery Status
 
