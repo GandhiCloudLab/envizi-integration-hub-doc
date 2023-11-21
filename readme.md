@@ -12,7 +12,7 @@ Here is the summary of this tutorial
 
 1. Create Data Service and Data Pipeline in Envizi to create AWS S3 buckets.
 2. Prepare Configuration file with the S3 and Turbonomic access details.
-3. Start the Integration Hub App
+3. Start the Integration Hub App with the Configuration file
 4. Update the Configuration settings in the App if required
 5. Ingest Turbonomic Data into Envizi via the App
 6. View the Turbonomic Data in Envizi
@@ -30,7 +30,7 @@ Envizi Integration Hub leverages  Envizi Data Service and Envizi Data Pipeline t
 
 ### 1.1 Create Data Service
 
-You need to create Data Service in Envizi. You can refer the tutorial https://developer.ibm.com/tutorials/awb-sending-udc-excel-to-s3/ for the detailed steps.
+You need to create Data Service in Envizi. You can refer the tutorial https://developer.ibm.com/tutorials/awb-sending-udc-excel-to-s3/#step-1-create-a-data-service-for-aws-s3-bucket for the detailed steps.
 
 1. Create Data service in envizi. 
 <img src="images/img-12-dataservice.png">
@@ -44,7 +44,7 @@ Secret Access Key
 
 ### 1.2 Create Data Pipeline
 
-You need to create Data Pipeline in Envizi. You can refer the tutorial https://developer.ibm.com/tutorials/awb-sending-udc-excel-to-s3/ for the detailed steps.
+You need to create Data Pipeline in Envizi. You can refer the tutorial https://developer.ibm.com/tutorials/awb-sending-udc-excel-to-s3#step-2-create-a-data-pipeline for the detailed steps.
 
 1. Create Data Pipeline in envizi. 
 <img src="images/img-13-datapipeline.png">
@@ -122,21 +122,37 @@ The user should have `Observer` role.
 ```
 #### 6. Update Turbonomic parameters (Optional)
 
-Update the below parameters as per need. 
-
-Integration Hub pulls the Energy Consumption of each data center from Turbonomic and it is mapped to the below given `account_style` in Envizi. Each data center from Turbonomic is created as an account in Envizi under the given `sub_group` and `group`.
+Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx` properties as per your environment. Otherwise no updates are required in the parameters. You can see the below explanations about the parameters.
 
 ```
   "turbo": {
     "parameters": {
       "group": "Sustainable-IT",
       "sub_group": "Turbonomic",
-      "account_style": "S2 - Electricity - kWh",
+      "account_style_energy_consumption": "S2 - Electricity - kWh",
+      "account_style_active_hosts": "Building Attributes - Headcount",
+      "account_style_active_vms": "Building Attributes - Headcount",
+      "account_style_energy_host_intensity": "Building Attributes - Headcount",
+      "account_style_vm_host_density": "Building Attributes - Headcount",
       "start_date": "2023-10-30",
       "end_date": "2023-11-04"
     }
   }
 ```
+
+1. The specified `group` and `sub_group` are created as `Groups` in Organization Hierarchy.
+2. Each data center from Turbonomic is created as an `Location` under the `sub_group`.
+3. The below  `Accounts` and `Account Styles` should be created for each Data center from Turbonomic.
+  ```
+  Energy Consumption      ---     Energy Consumption - kWh
+  Active Hosts            ---     Active Hosts [Number]     
+  Active VMs              ---     Active Virtual Machines [Number]
+  Energy Host Intensity   ---     Energy Host Intensity - kWh/host
+  VM Host Density         ---     Virtual Machine to Host Density - VM/Host
+  ```
+4. If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the right values. Otherwise just leave it for default.
+
+
 ## 3. Start the Integration Hub App
 
 Need to start the Integration Hub App with the prepared configuration file.
@@ -188,7 +204,8 @@ The above prepared `envizi-config.json` config file content would be displayed h
 
 <img src="images/img-16-config1.png">
 <img src="images/img-16-config2.png">
-
+<img src="images/img-16-config3.png">
+<img src="images/img-16-config4.png">
 
 ## 5. Ingest Turbonomic Data into Envizi via the App
 
@@ -220,7 +237,13 @@ View the `file delivery status` to see the `locations` and `accounts` related fi
 
 View the `Org Hiearchy` to see the `groups`, `locations` and `accounts` are created in Envizi.
 
-<img src="images/img-20-orghierarchy.png">
+Here the `Energy Consumption` related account is available.
+
+<img src="images/img-20-orghierarchy1.png">
+
+Here the other accounts `Active Hosts`, `Active VMs` and etc are available.
+
+<img src="images/img-20-orghierarchy2.png">
 
 ### 6.3 View Summary page
 
