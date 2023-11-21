@@ -17,12 +17,15 @@ Here is the summary of this tutorial
 5. Ingest Turbonomic Data into Envizi via the App
 6. View the Turbonomic Data in Envizi
 
+
+Note: Tririga is mentioned in the diagram is for understanding purpose. It is not integrated yet in Hub.
+
 ## Pre-Requisites
 
 To run this tutorial you need to have the followings.
 
 1. IBM Envizi ESG Suite access with Administrator privileges.
-2. Docker runtime to run the docker container in your system.
+2. Docker runtime to run the docker container in your system or Python installed to run via source code.
 
 ## 1. Create Data Service and Data Pipeline in Envizi
 
@@ -152,14 +155,45 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
   ```
 4. If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the right values. Otherwise just leave it for default.
 
-
 ## 3. Start the Integration Hub App
+
+The Integration Hub App should be started with the configuration file.
+
+To start the app, you can run the python source directly or via the Docker Container.
+
+### 3.1 Start the App using Python source
+
+1. Download the repo https://github.com/ibm-ecosystem-engineering/envizi-integration-hub .
+
+2. Prepare the Configuration file `envizi-config.json`. Sample file is available in `./config/envizi-config-sample.json`.
+
+3. Lets us assume the file is located in `/tmp/envizi-config.json`
+
+4. Run the below command to create virutal environment (first time only).
+```
+python -m venv myvenv
+source myvenv/bin/activate
+
+python -m pip install -r requirements.txt
+```
+
+5. Run the below command to start the app. The config file location is given here and it should be Absolute Path.
+
+```
+export WRITE_INTERIM_FILES=FALSE
+export LOGLEVEL=INFO
+export ENVIZI_CONFIG_FILE="/tmp/envizi-config.json"
+
+python app/main.py
+
+```
+### 3.2 Start the App using Docker
 
 Need to start the Integration Hub App with the prepared configuration file.
 
-### 3.1 Start the App
+#### 3.2.1 Start the App
 
-1. Keep the property file `envizi-config.json` in some folder. Lets us assume the file is located in `/Users/gandhi/Desktop/envizi-config.json`
+1. Keep the property file `envizi-config.json` in some folder. Lets us assume the file is located in `/tmp/envizi-config.json`
 
 2. Run the below command to start the app.
 
@@ -167,13 +201,13 @@ The abolve file name is mentioned in the `-v` parameter here and suffixed with `
 
 for Mac
 ```
-docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-mac:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-mac:latest
 
 ```
 
 for linux
 ```
-docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-config.json:/app/envizi-config.json" docker.io/gandigit/e-int-hub-linux:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" docker.io/gandigit/e-int-hub-linux:latest
 ```
 
 3. Open the url http://localhost:3001/ in the browser to see the home page.
@@ -181,7 +215,7 @@ docker run -d -p 3001:3001 --name my-e-int-hub -v "/Users/gandhi/Desktop/envizi-
 
 <img src="images/img-15-home.png">
 
-### 3.2 Stop the App (for info only)
+#### 3.2.2 Stop the App (for info only)
 
 Run the below commands one by one to stop the app.
 
@@ -190,7 +224,7 @@ docker stop my-e-int-hub
 docker rm my-e-int-hub
 ```
 
-### 3.3 View the App logs (for info only)
+#### 3.2.3 View the App logs (for info only)
 
 Run the below commmand to view the logs of the app.
 
